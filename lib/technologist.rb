@@ -42,13 +42,8 @@ module Technologist
         end
     end
 
-    def head_commit
-      head = repository.references["refs/heads/master"].target_id
-      repository.lookup(head)
-    end
-
     def tree
-      head_commit.tree
+      repository.head.target.tree
     end
 
     def file_content(file_name)
