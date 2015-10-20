@@ -23,9 +23,9 @@ Or install it yourself as:
 ```
 require 'technologist'
 
-technologist = Technologist.new('.')
-technologist.primary_framework      # => ['Dashing']
-technologist.secondary_framework    # => ['Sinatra']
+technologist = Technologist::Repository.new('.')
+technologist.primary_frameworks      # => ['Dashing']
+technologist.secondary_frameworks    # => ['Sinatra']
 ```
 
 ## Development
@@ -36,8 +36,9 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-To add a framework definition just add it to the
-[frameworks.yml](lib/technologist/frameworks.yml) file.
+To add a framework definition add a new section to the
+[frameworks.yml](lib/technologist/frameworks.yml) file and
+add a new spec covering the new framework in [spec/frameworks_rules_spec.rb](spec/frameworks_rules_spec.rb)
 
 1. Fork it ( https://github.com/[my-github-username]/technologist/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
