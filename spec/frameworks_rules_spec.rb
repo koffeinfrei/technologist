@@ -20,8 +20,14 @@ describe 'Frameworks rules' do
       expect(repository.secondary_frameworks).to eq []
     end
 
-    it 'returns Sinatra' do
+    it 'returns Sinatra (1)' do
       repository = repository('config.ru', "bogus\nrun Sinatra::Application\nbogus")
+      expect(repository.primary_frameworks).to eq ['Sinatra']
+      expect(repository.secondary_frameworks).to eq []
+    end
+
+    it 'returns Sinatra (2)' do
+      repository = repository('Gemfile', "bogus\ngem 'sinatra'\nbogus")
       expect(repository.primary_frameworks).to eq ['Sinatra']
       expect(repository.secondary_frameworks).to eq []
     end

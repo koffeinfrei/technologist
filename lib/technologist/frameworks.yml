@@ -1,20 +1,26 @@
 Locomotive:
-  file: Gemfile
-  pattern: ^gem 'locomotivecms_wagon'$
+  rules:
+    - Gemfile: ^gem 'locomotivecms_wagon'$
   primary: Rails
+
 Rails:
-  file: Gemfile
-  pattern: ^gem 'rails'$
+  rules:
+    - Gemfile: ^gem 'rails'$
+
 Magnolia:
-  file: pom.xml
-  pattern: <magnoliaVersion>
+  rules:
+    - pom.xml: <magnoliaVersion>
+
 Sinatra:
-  file: config.ru
-  pattern: run Sinatra::Application
+  rules:
+    - config.ru: run Sinatra::Application
+    - Gemfile: ^gem 'sinatra'$
+
 Dashing:
-  file: Gemfile
-  pattern: ^gem 'dashing'$
+  rules:
+    - Gemfile: ^gem 'dashing'$
   primary: Sinatra
+
 Middleman:
-  file: Gemfile
-  pattern: ^gem 'middleman'$
+  rules:
+    - Gemfile: ^gem 'middleman'$

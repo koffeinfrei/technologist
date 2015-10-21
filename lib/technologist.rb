@@ -12,14 +12,14 @@ module Technologist
       matched_frameworks.map do |technology|
         # it's either the primary value defined in the yaml
         # or the technology itself
-        rules[technology]['primary'] || technology
+        framework_rules[technology]['primary'] || technology
       end.uniq
     end
 
     def secondary_frameworks
       matched_frameworks.map do |technology|
         # it's a secondary if a primary is defined in the yaml
-        rules[technology]['primary'] && technology
+        framework_rules[technology]['primary'] && technology
       end.compact
     end
 
@@ -30,15 +30,19 @@ module Technologist
     def matched_frameworks
       @frameworks ||=
         begin
-          rules.select do |technology, rule|
-            file_name = rule['file']
-            # may use single or double quotes
-            pattern = rule['pattern'].gsub(/["']/, %q{["']})
+          framework_rules.map do |technology, definition|
+            definition['rules'].map do |rule|
+              rule = rule.flatten
+              file_name = rule.first
+              pattern = rule.last
+              # may use single or double quotes
+              pattern = pattern.gsub(/["']/, %q{["']})
 
-            if file_content(file_name) =~ /#{pattern}/
-              technology
+              if file_content(file_name) =~ /#{pattern}/
+                technology
+              end
             end
-          end.map(&:first)
+          end.flatten.compact
         end
     end
 
@@ -54,8 +58,8 @@ module Technologist
       end
     end
 
-    def rules
-      @rules ||= YAML.load_file('lib/technologist/frameworks.yml')
+    def framework_rules
+      @framework_rules ||= YAML.load_file('lib/technologist/frameworks.yml')
     end
   end
 end

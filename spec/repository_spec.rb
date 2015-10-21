@@ -7,10 +7,11 @@ describe Technologist::Repository do
       allow(repository).to receive(:file_content).and_return(nil)
 
       # rules
-      allow(repository).to receive(:rules).and_return({
+      allow(repository).to receive(:framework_rules).and_return({
         'SecondaryFramework' => {
-          'file' => 'file1',
-          'pattern' =>  'file1_content',
+          'rules' => [
+            { 'file1' => 'file1_content' },
+          ],
           'primary' => 'PrimaryFramework'
         }
       })
