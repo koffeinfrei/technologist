@@ -48,4 +48,4 @@ add a new spec covering the new framework in [spec/frameworks_rules_spec.rb](spe
 
 ## License
 
-Licensed under the [GNU General Public License v3.0](LICENSE)
+Licensed under the [GNU Affero General Public License v3.0](LICENSE)
