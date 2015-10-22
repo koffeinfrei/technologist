@@ -1,11 +1,11 @@
 Locomotive:
   rules:
-    - Gemfile: ^gem 'locomotivecms_wagon'
+    - Gemfile: ^\s*gem 'locomotivecms_wagon'
   primary: Rails
 
 Rails:
   rules:
-    - Gemfile: ^gem 'rails'
+    - Gemfile: ^\s*gem 'rails'
 
 Magnolia:
   rules:
@@ -14,13 +14,13 @@ Magnolia:
 Sinatra:
   rules:
     - config.ru: run Sinatra::Application
-    - Gemfile: ^gem 'sinatra'
+    - Gemfile: ^\s*gem 'sinatra'
 
 Dashing:
   rules:
-    - Gemfile: ^gem 'dashing'
+    - Gemfile: ^\s*gem 'dashing'
   primary: Sinatra
 
 Middleman:
   rules:
-    - Gemfile: ^gem 'middleman'
+    - Gemfile: ^\s*gem 'middleman'

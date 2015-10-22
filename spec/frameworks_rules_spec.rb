@@ -17,7 +17,16 @@ describe 'Frameworks rules' do
     it 'returns Rails when specified with version' do
       repository = repository('Gemfile', "bogus\ngem 'rails', '~> 4.3'\nbogus")
       expect(repository.primary_frameworks).to eq ['Rails']
-      expect(repository.secondary_frameworks).to eq []
+    end
+
+    it 'returns Rails when indented' do
+      repository = repository('Gemfile', "bogus\n  gem 'rails'\nbogus")
+      expect(repository.primary_frameworks).to eq ['Rails']
+    end
+
+    it 'does not returns Rails when commented out' do
+      repository = repository('Gemfile', "bogus\n# gem 'rails'\nbogus")
+      expect(repository.primary_frameworks).to_not eq ['Rails']
     end
 
     it 'returns Magnolia' do
