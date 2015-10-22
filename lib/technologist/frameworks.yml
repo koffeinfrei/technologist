@@ -1,11 +1,23 @@
+# These template rules can be reused as yml aliases
+# to dry up the common rules.
+# The placeholder `%{name}` gets replaced by the
+# downcased framework name.
+template_rules:
+  # rule that checks for a gem with
+  # the same name as the framework
+  gem_rule: &gem_rule
+    Gemfile: ^\s*gem '%{name}'
+
+# Here be the framework definitions
+
+Rails:
+  rules:
+    - <<: *gem_rule
+
 Locomotive:
   rules:
     - Gemfile: ^\s*gem 'locomotivecms_wagon'
   primary: Rails
-
-Rails:
-  rules:
-    - Gemfile: ^\s*gem 'rails'
 
 Magnolia:
   rules:
@@ -13,14 +25,14 @@ Magnolia:
 
 Sinatra:
   rules:
+    - <<: *gem_rule
     - config.ru: run Sinatra::Application
-    - Gemfile: ^\s*gem 'sinatra'
 
 Dashing:
   rules:
-    - Gemfile: ^\s*gem 'dashing'
+    - <<: *gem_rule
   primary: Sinatra
 
 Middleman:
   rules:
-    - Gemfile: ^\s*gem 'middleman'
+    - <<: *gem_rule
