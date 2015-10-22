@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["mail@koffeinfrei.org"]
 
   spec.summary       = %q{Detects the technologies used in a repository.}
-  spec.description   = %q{}
+  spec.description   = %q{Detects technologies in a repository by applying a set of rules and returning primary and secondary frameworks.}
   spec.homepage      = "https://github.com/github/koffeinfrei/linguist"
   spec.license       = "AGPL-3.0"
 
@@ -23,5 +23,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec", "~> 3.3.0"
+  spec.add_development_dependency "rspec", "~> 3.3"
 end
