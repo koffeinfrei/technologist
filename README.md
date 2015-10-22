@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/koffeinfrei/technologist.svg?branch=master)](https://travis-ci.org/koffeinfrei/technologist)
+
 # Technologist
 
 This library detects the technologies used in a repository.
