@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+require "technologist"
+
+def framework_report(title, frameworks)
+  return if frameworks.empty?
+  puts title
+  frameworks.each do |framework|
+    puts "* #{framework}"
+  end
+end
+
+path = ARGV[0] || Dir.pwd
+
+result = Technologist::Repository.new(path)
+
+if result.primary_frameworks.empty? && result.secondary_frameworks.empty?
+  puts "No known frameworks could be detected."
+else
+  framework_report('Primary Frameworks', result.primary_frameworks)
+  framework_report('Secondary Frameworks', result.secondary_frameworks)
+end
