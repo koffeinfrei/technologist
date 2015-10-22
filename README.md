@@ -45,3 +45,7 @@ add a new spec covering the new framework in [spec/frameworks_rules_spec.rb](spe
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+## License
+
+Licensed under the [GNU General Public License v3.0](LICENSE)
