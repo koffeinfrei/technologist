@@ -14,6 +14,12 @@ describe 'Frameworks rules' do
       expect(repository.secondary_frameworks).to eq []
     end
 
+    it 'returns Rails when specified with version' do
+      repository = repository('Gemfile', "bogus\ngem 'rails', '~> 4.3'\nbogus")
+      expect(repository.primary_frameworks).to eq ['Rails']
+      expect(repository.secondary_frameworks).to eq []
+    end
+
     it 'returns Magnolia' do
       repository = repository('pom.xml', "bogus\n    <magnoliaVersion>    \nbogus")
       expect(repository.primary_frameworks).to eq ['Magnolia']
