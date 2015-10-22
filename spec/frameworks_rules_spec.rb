@@ -7,7 +7,9 @@ describe 'Frameworks rules' do
       expect(repository.primary_frameworks).to eq ['Rails']
       expect(repository.secondary_frameworks).to eq ['Locomotive']
     end
+  end
 
+  describe 'Rails' do
     it 'returns Rails' do
       repository = repository('Gemfile', "bogus\ngem 'rails'\nbogus")
       expect(repository.primary_frameworks).to eq ['Rails']
@@ -28,13 +30,17 @@ describe 'Frameworks rules' do
       repository = repository('Gemfile', "bogus\n# gem 'rails'\nbogus")
       expect(repository.primary_frameworks).to_not eq ['Rails']
     end
+  end
 
+  describe 'Magnolia' do
     it 'returns Magnolia' do
       repository = repository('pom.xml', "bogus\n    <magnoliaVersion>    \nbogus")
       expect(repository.primary_frameworks).to eq ['Magnolia']
       expect(repository.secondary_frameworks).to eq []
     end
+  end
 
+  describe 'Sinatra' do
     it 'returns Sinatra (1)' do
       repository = repository('config.ru', "bogus\nrun Sinatra::Application\nbogus")
       expect(repository.primary_frameworks).to eq ['Sinatra']
@@ -46,13 +52,17 @@ describe 'Frameworks rules' do
       expect(repository.primary_frameworks).to eq ['Sinatra']
       expect(repository.secondary_frameworks).to eq []
     end
+  end
 
+  describe 'Dashing' do
     it 'returns Dashing' do
       repository = repository('Gemfile', "bogus\ngem 'dashing'\nbogus")
       expect(repository.primary_frameworks).to eq ['Sinatra']
       expect(repository.secondary_frameworks).to eq ['Dashing']
     end
+  end
 
+  describe 'Middleman' do
     it 'returns Middleman' do
       repository = repository('Gemfile', "bogus\ngem 'middleman'\nbogus")
       expect(repository.primary_frameworks).to eq ['Middleman']
