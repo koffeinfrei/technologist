@@ -2,6 +2,8 @@ require 'yaml'
 
 module Technologist
   class FrameworkDetector
+    FRAMEWORK_RULES = File.expand_path('../frameworks.yml',  __FILE__)
+
     def initialize(repository)
       @repository = repository
     end
@@ -26,7 +28,7 @@ module Technologist
     attr_reader :repository
 
     def rules
-      @rules ||= YAML.load_file('lib/technologist/frameworks.yml')
+      @rules ||= YAML.load_file(FRAMEWORK_RULES)
     end
 
     def matched_frameworks
