@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Frameworks rules' do
   describe 'Locomotive' do
-    it 'returns Dashing' do
+    it 'returns Locomotive' do
       repository = repository('Gemfile', "bogus\ngem 'locomotivecms_wagon'\nbogus")
       expect(repository.primary_frameworks).to eq ['Rails']
       expect(repository.secondary_frameworks).to eq ['Locomotive']
