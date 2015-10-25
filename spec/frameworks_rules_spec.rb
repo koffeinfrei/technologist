@@ -69,4 +69,12 @@ RSpec.describe 'Frameworks rules' do
       expect(repository.secondary_frameworks).to eq ['Spree']
     end
   end
+
+  describe 'Wordpress' do
+    it 'returns Wordpress' do
+      repository = create_repository_with_file('wp-settings.php')
+      expect(repository.primary_frameworks).to eq ['Wordpress']
+      expect(repository.secondary_frameworks).to eq []
+    end
+  end
 end

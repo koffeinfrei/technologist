@@ -33,3 +33,7 @@ Spree:
   rules:
     - !ruby/object:GemRule { gem_name: 'spree' }
   primary: Rails
+
+Wordpress:
+  rules:
+    - !ruby/object:FilePresenceRule { file_name: 'wp-settings.php' }

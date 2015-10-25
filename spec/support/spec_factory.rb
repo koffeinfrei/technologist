@@ -8,6 +8,12 @@ module SpecFactory
     end
   end
 
+  def create_repository_with_file(file_name)
+    Technologist::Repository.new('.').tap do |repository|
+      allow(repository.git_repository).to receive(:file_exists?).with(file_name).and_return(true)
+    end
+  end
+
   def create_repository_with_directory(directory_name)
     Technologist::Repository.new('.').tap do |repository|
       allow(repository.git_repository).to receive(:directory_exists?).with(directory_name).and_return(true)
