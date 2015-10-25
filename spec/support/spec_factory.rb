@@ -1,5 +1,5 @@
 module SpecFactory
-  def create_repository(file_name, file_content)
+  def create_repository_with_file_content(file_name, file_content)
     Technologist::Repository.new('.').tap do |repository|
       # default file content for non existing files
       allow(repository.git_repository).to receive(:file_content).and_return(nil)
