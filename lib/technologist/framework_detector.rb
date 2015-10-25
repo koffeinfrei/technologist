@@ -26,7 +26,13 @@ module Technologist
     attr_reader :repository
 
     def rules
-      @rules ||= YAML.load_file('lib/technologist/frameworks.yml')
+      @rules ||=
+        begin
+          rules = YAML.load_file('lib/technologist/frameworks.yml')
+          # skip the template rules
+          rules.delete('template_rules')
+          rules
+        end
     end
 
     def matched_frameworks
@@ -39,6 +45,8 @@ module Technologist
               pattern = rule.last
               # may use single or double quotes
               pattern = pattern.gsub(/["']/, %q{["']})
+              # may contain a placeholder for template rules
+              pattern = format(pattern, name: technology.downcase)
 
               if repository.file_content(file_name) =~ /#{pattern}/
                 technology
