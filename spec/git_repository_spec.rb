@@ -46,4 +46,18 @@ describe Technologist::GitRepository do
       expect(repository.directory_exists?('bogus')).to eq false
     end
   end
+
+  describe '#file_exists?' do
+    it 'returns true when the file exists' do
+      repository = Technologist::GitRepository.new('.')
+
+      expect(repository.file_exists?('Gemfile')).to eq true
+    end
+
+    it 'returns false when the file does not exist' do
+      repository = Technologist::GitRepository.new('.')
+
+      expect(repository.file_exists?('bogus')).to eq false
+    end
+  end
 end

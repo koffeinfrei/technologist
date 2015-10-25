@@ -54,5 +54,15 @@ module Technologist
     def directory_exists?(directory_name)
       !!find_blob(directory_name)
     end
+
+    # Looks for a file and returns true when the file
+    # can be found.
+    #
+    # @param file_name [String] the file name
+    #
+    # @return [Boolean] true if the file can be found.
+    def file_exists?(file_name)
+      !!find_blob(file_name)
+    end
   end
 end
