@@ -53,4 +53,12 @@ RSpec.describe 'Frameworks rules' do
       expect(repository.secondary_frameworks).to eq []
     end
   end
+
+  describe 'Meteor' do
+    it 'returns Meteor' do
+      repository = create_repository_with_directory('.meteor')
+      expect(repository.primary_frameworks).to eq ['Meteor']
+      expect(repository.secondary_frameworks).to eq []
+    end
+  end
 end

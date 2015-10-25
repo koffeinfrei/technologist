@@ -24,3 +24,7 @@ Dashing:
 Middleman:
   rules:
     - !ruby/object:GemRule {}
+
+Meteor:
+  rules:
+    - !ruby/object:DirectoryPresenceRule { directory_name: '.meteor' }
