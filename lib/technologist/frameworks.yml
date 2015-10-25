@@ -1,26 +1,26 @@
-Locomotive:
-  rules:
-    - Gemfile: ^\s*gem 'locomotivecms_wagon'
-  primary: Rails
-
 Rails:
   rules:
-    - Gemfile: ^\s*gem 'rails'
+    - !ruby/object:GemRule {}
+
+Locomotive:
+  rules:
+    - !ruby/object:GemRule { gem_name: 'locomotivecms_wagon' }
+  primary: Rails
 
 Magnolia:
   rules:
-    - pom.xml: <magnoliaVersion>
+    - !ruby/object:FileContentRule { file_name: 'pom.xml', file_content_pattern: '<magnoliaVersion>' }
 
 Sinatra:
   rules:
-    - config.ru: run Sinatra::Application
-    - Gemfile: ^\s*gem 'sinatra'
+    - !ruby/object:FileContentRule { file_name: 'config.ru', file_content_pattern: 'run Sinatra::Application' }
+    - !ruby/object:GemRule {}
 
 Dashing:
   rules:
-    - Gemfile: ^\s*gem 'dashing'
+    - !ruby/object:GemRule {}
   primary: Sinatra
 
 Middleman:
   rules:
-    - Gemfile: ^\s*gem 'middleman'
+    - !ruby/object:GemRule {}
