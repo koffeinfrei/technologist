@@ -34,13 +34,7 @@ module Technologist
         begin
           rules.map do |technology, definition|
             definition['rules'].map do |rule|
-              rule = rule.flatten
-              file_name = rule.first
-              pattern = rule.last
-              # may use single or double quotes
-              pattern = pattern.gsub(/["']/, %q{["']})
-
-              if repository.file_content(file_name) =~ /#{pattern}/
+              if rule.matches?(technology, repository)
                 technology
               end
             end

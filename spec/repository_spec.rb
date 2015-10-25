@@ -10,7 +10,7 @@ describe Technologist::Repository do
       allow(repository.framework_detector).to receive(:rules).and_return({
         'SecondaryFramework' => {
           'rules' => [
-            { 'file1' => 'file1_content' },
+            FileContentRule.new(file_name: 'file1', file_content_pattern: 'file1_content'),
           ],
           'primary' => 'PrimaryFramework'
         }
@@ -19,7 +19,7 @@ describe Technologist::Repository do
   end
 
   describe '#primary_frameworks' do
-    it 'returns Dashing' do
+    it 'returns PrimaryFramework' do
       allow(repository.git_repository).to receive(:file_content).with('file1').and_return("file1_content")
 
       expect(repository.primary_frameworks).to eq ['PrimaryFramework']
@@ -27,7 +27,7 @@ describe Technologist::Repository do
   end
 
   describe '#secondary_frameworks' do
-    it 'returns Dashing' do
+    it 'returns SecondaryFramework' do
       allow(repository.git_repository).to receive(:file_content).with('file1').and_return("file1_content")
 
       expect(repository.secondary_frameworks).to eq ['SecondaryFramework']
