@@ -42,6 +42,36 @@ describe GemRule do
       expect(rule.matches?('Framework1', repository)).to eq true
     end
 
+    it 'returns true when the gem is specified with a version' do
+      rule = GemRule.new(gem_name: 'next_generation_gem')
+
+      repository = double(:repository)
+      allow(repository).to receive(:file_content).with('Gemfile')
+        .and_return("content\ngem 'next_generation_gem', '~> 4.3'\ncontent")
+
+      expect(rule.matches?('Framework1', repository)).to eq true
+    end
+
+    it "returns true when the gem definition is indented" do
+      rule = GemRule.new(gem_name: 'next_generation_gem')
+
+      repository = double(:repository)
+      allow(repository).to receive(:file_content).with('Gemfile')
+        .and_return("content\n  gem 'next_generation_gem'\ncontent")
+
+      expect(rule.matches?('Framework1', repository)).to eq true
+    end
+
+    it "returns false when the gem is commented out" do
+      rule = GemRule.new(gem_name: 'next_generation_gem')
+
+      repository = double(:repository)
+      allow(repository).to receive(:file_content).with('Gemfile')
+        .and_return("content\n# gem 'next_generation_gem'\ncontent")
+
+      expect(rule.matches?('Framework1', repository)).to eq false
+    end
+
     it 'returns false when the Gemfile does not contain the gem' do
       rule = GemRule.new(gem_name: 'next_generation_gem')
 
