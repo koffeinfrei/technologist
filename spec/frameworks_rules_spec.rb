@@ -61,4 +61,12 @@ RSpec.describe 'Frameworks rules' do
       expect(repository.secondary_frameworks).to eq []
     end
   end
+
+  describe 'Locomotive' do
+    it 'returns Rails as primary and Spree as secondary' do
+      repository = create_repository_with_file_content('Gemfile', "gem 'spree'")
+      expect(repository.primary_frameworks).to eq ['Rails']
+      expect(repository.secondary_frameworks).to eq ['Spree']
+    end
+  end
 end

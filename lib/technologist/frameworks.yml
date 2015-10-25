@@ -28,3 +28,8 @@ Middleman:
 Meteor:
   rules:
     - !ruby/object:DirectoryPresenceRule { directory_name: '.meteor' }
+
+Spree:
+  rules:
+    - !ruby/object:GemRule { gem_name: 'spree' }
+  primary: Rails
