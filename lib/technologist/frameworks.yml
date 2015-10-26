@@ -58,3 +58,7 @@ Hoodie:
       file_name: 'package.json'
       file_content_pattern: '"hoodie":\s*{'
   primary: Node
+
+PrestaShop:
+  rules:
+    - !ruby/object:FileContentRule { file_name: 'init.php', file_content_pattern: 'PrestaShop' }

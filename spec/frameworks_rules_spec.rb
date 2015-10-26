@@ -115,4 +115,17 @@ RSpec.describe 'Frameworks rules' do
       expect(repository.secondary_frameworks).to eq ['Hoodie']
     end
   end
+
+  describe 'PrestaShop' do
+    it 'returns PrestaShop' do
+      repository = create_repository_with_file_content('init.php', %{
+        <?php
+        /*
+        * 2007-2015 PrestaShop
+        *
+      })
+      expect(repository.primary_frameworks).to eq ['PrestaShop']
+      expect(repository.secondary_frameworks).to eq []
+    end
+  end
 end
