@@ -128,4 +128,15 @@ RSpec.describe 'Frameworks rules' do
       expect(repository.secondary_frameworks).to eq []
     end
   end
+
+  describe 'Cordova' do
+    it 'returns Cordova' do
+      repository = create_repository_with_file_content('config.xml', %{
+        <?xml version='1.0' encoding='utf-8'?>
+        <widget id="ch.panter.suitefox" version="0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+      })
+      expect(repository.primary_frameworks).to eq ['Cordova']
+      expect(repository.secondary_frameworks).to eq []
+    end
+  end
 end

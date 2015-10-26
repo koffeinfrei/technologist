@@ -62,3 +62,9 @@ Hoodie:
 PrestaShop:
   rules:
     - !ruby/object:FileContentRule { file_name: 'init.php', file_content_pattern: 'PrestaShop' }
+
+Cordova:
+  rules:
+    - !ruby/object:FileContentRule
+      file_name: 'config.xml'
+      file_content_pattern: '\bxmlns:cdv="http://cordova.apache.org/ns/.+"'
