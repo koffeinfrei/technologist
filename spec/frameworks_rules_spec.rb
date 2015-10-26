@@ -77,4 +77,12 @@ RSpec.describe 'Frameworks rules' do
       expect(repository.secondary_frameworks).to eq []
     end
   end
+
+  describe 'Volt' do
+    it 'returns Volt' do
+      repository = create_repository_with_file_content('Gemfile', "gem 'volt'")
+      expect(repository.primary_frameworks).to eq ['Volt']
+      expect(repository.secondary_frameworks).to eq []
+    end
+  end
 end

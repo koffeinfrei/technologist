@@ -37,3 +37,7 @@ Spree:
 Wordpress:
   rules:
     - !ruby/object:FilePresenceRule { file_name: 'wp-settings.php' }
+
+Volt:
+  rules:
+    - !ruby/object:GemRule {}
