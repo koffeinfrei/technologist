@@ -105,4 +105,14 @@ RSpec.describe 'Frameworks rules' do
       expect(repository.secondary_frameworks).to eq []
     end
   end
+
+  describe 'Hoodie' do
+    it 'returns Hoodie' do
+      repository = create_repository_with_file_content('package.json', %[
+        "hoodie": {
+      ])
+      expect(repository.primary_frameworks).to eq ['Node']
+      expect(repository.secondary_frameworks).to eq ['Hoodie']
+    end
+  end
 end

@@ -51,3 +51,10 @@ Node:
     - !ruby/object:FileContentRule
       file_name: 'package.json'
       file_content_pattern: '"engines":\s*{\s*"node":'
+
+Hoodie:
+  rules:
+    - !ruby/object:FileContentRule
+      file_name: 'package.json'
+      file_content_pattern: '"hoodie":\s*{'
+  primary: Node
