@@ -68,3 +68,9 @@ Cordova:
     - !ruby/object:FileContentRule
       file_name: 'config.xml'
       file_content_pattern: '\bxmlns:cdv="http://cordova.apache.org/ns/.+"'
+
+iOS:
+  rules:
+    - !ruby/object:FileContentRule
+      file_name: 'project.pbxproj'
+      file_content_pattern: '\n\s*SDKROOT = iphoneos;\n'

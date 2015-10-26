@@ -139,4 +139,16 @@ RSpec.describe 'Frameworks rules' do
       expect(repository.secondary_frameworks).to eq []
     end
   end
+
+  describe 'iOS' do
+    it 'returns iOS' do
+      repository = create_repository_with_file_content('project.pbxproj', %{
+        ONLY_ACTIVE_ARCH = YES;
+        SDKROOT = iphoneos;
+        SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+      })
+      expect(repository.primary_frameworks).to eq ['iOS']
+      expect(repository.secondary_frameworks).to eq []
+    end
+  end
 end
