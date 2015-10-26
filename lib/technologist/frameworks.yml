@@ -45,3 +45,9 @@ Volt:
 Ionic:
   rules:
     - !ruby/object:FilePresenceRule { file_name: 'ionic.project' }
+
+Node:
+  rules:
+    - !ruby/object:FileContentRule
+      file_name: 'package.json'
+      file_content_pattern: '"engines":\s*{\s*"node":'

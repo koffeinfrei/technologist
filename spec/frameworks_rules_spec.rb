@@ -93,4 +93,16 @@ RSpec.describe 'Frameworks rules' do
       expect(repository.secondary_frameworks).to eq []
     end
   end
+
+  describe 'Node' do
+    it 'returns Node' do
+      repository = create_repository_with_file_content('package.json', %[
+        "engines": {
+          "node": ">=0.10.22"
+         }
+      ])
+      expect(repository.primary_frameworks).to eq ['Node']
+      expect(repository.secondary_frameworks).to eq []
+    end
+  end
 end
