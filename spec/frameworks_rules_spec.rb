@@ -85,4 +85,12 @@ RSpec.describe 'Frameworks rules' do
       expect(repository.secondary_frameworks).to eq []
     end
   end
+
+  describe 'Ionic' do
+    it 'returns Ionic' do
+      repository = create_repository_with_file('ionic.project')
+      expect(repository.primary_frameworks).to eq ['Ionic']
+      expect(repository.secondary_frameworks).to eq []
+    end
+  end
 end

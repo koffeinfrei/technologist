@@ -41,3 +41,7 @@ Wordpress:
 Volt:
   rules:
     - !ruby/object:GemRule {}
+
+Ionic:
+  rules:
+    - !ruby/object:FilePresenceRule { file_name: 'ionic.project' }
