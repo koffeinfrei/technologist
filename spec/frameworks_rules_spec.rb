@@ -75,8 +75,14 @@ RSpec.describe 'Frameworks rules' do
   end
 
   describe 'Locomotive' do
-    it 'returns Rails as primary and Spree as secondary' do
+    it 'returns Rails as primary and Spree as secondary when the gem rule matches' do
       repository = create_repository_with_file_content('Gemfile', "gem 'spree'")
+      expect(repository.primary_frameworks).to eq ['Rails']
+      expect(repository.secondary_frameworks).to eq ['Spree']
+    end
+
+    it 'returns Rails as primary and Spree as secondary boot.rb file rule matches' do
+      repository = create_repository_with_file_content('boot.rb', "# All that for this:\nSpree.boot!")
       expect(repository.primary_frameworks).to eq ['Rails']
       expect(repository.secondary_frameworks).to eq ['Spree']
     end

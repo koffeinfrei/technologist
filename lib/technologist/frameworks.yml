@@ -34,6 +34,7 @@ Meteor:
 Spree:
   rules:
     - !ruby/object:GemRule {}
+    - !ruby/object:FileContentRule { file_name: 'boot.rb', file_content_pattern: 'Spree.boot!' }
   primary: Rails
 
 Wordpress:
