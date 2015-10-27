@@ -179,8 +179,21 @@ RSpec.describe 'Frameworks rules' do
   end
 
   describe 'Rack' do
-    it 'returns Rack' do
+    it 'returns Rack when the gem rule matches' do
       repository = create_repository_with_file_content('Gemfile', "gem 'rack'")
+      expect(repository.primary_frameworks).to eq ['Rack']
+      expect(repository.secondary_frameworks).to eq []
+    end
+
+    it 'returns Rack when the config.ru file rule matches' do
+      repository = create_repository_with_file_content('config.ru', %[
+        ROOT = File.expand_path('..', __FILE__)
+
+        run Proc.new { |env|
+          path = ROOT + Rack::Utils.unescape(env['PATH_INFO'])
+          # ...
+        }
+      ])
       expect(repository.primary_frameworks).to eq ['Rack']
       expect(repository.secondary_frameworks).to eq []
     end

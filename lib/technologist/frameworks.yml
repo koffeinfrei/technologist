@@ -86,3 +86,6 @@ Refinery CMS:
 Rack:
   rules:
     - !ruby/object:GemRule { gem_name: 'rack' }
+    - !ruby/object:FileContentRule
+      file_name: config.ru
+      file_content_pattern: 'run Proc\.new { \|env\|'
