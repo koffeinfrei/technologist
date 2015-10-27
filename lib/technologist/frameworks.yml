@@ -1,6 +1,7 @@
 Rails:
   rules:
     - !ruby/object:GemRule {}
+    - !ruby/object:GemRule { gem_name: 'jrails' }
     - !ruby/object:FileContentRule { file_name: 'boot.rb', file_content_pattern: 'Rails.boot!' }
 
 Locomotive:

@@ -2,8 +2,14 @@ require 'spec_helper'
 
 RSpec.describe 'Frameworks rules' do
   describe 'Rails' do
-    it 'returns Rails when the gem rule matches' do
+    it 'returns Rails when the rails gem rule matches' do
       repository = create_repository_with_file_content('Gemfile', "gem 'rails'")
+      expect(repository.primary_frameworks).to eq ['Rails']
+      expect(repository.secondary_frameworks).to eq []
+    end
+
+    it 'returns Rails when the jrails gem rule matches' do
+      repository = create_repository_with_file_content('Gemfile', "gem 'jrails'")
       expect(repository.primary_frameworks).to eq ['Rails']
       expect(repository.secondary_frameworks).to eq []
     end
