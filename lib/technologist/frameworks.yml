@@ -33,7 +33,7 @@ Meteor:
 
 Spree:
   rules:
-    - !ruby/object:GemRule { gem_name: 'spree' }
+    - !ruby/object:GemRule {}
   primary: Rails
 
 Wordpress:
