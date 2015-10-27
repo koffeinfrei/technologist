@@ -76,3 +76,8 @@ iOS:
     - !ruby/object:FileContentRule
       file_name: 'project.pbxproj'
       file_content_pattern: '\n\s*SDKROOT = iphoneos;\n'
+
+Refinery CMS:
+  rules:
+    - !ruby/object:GemRule { gem_name: 'refinerycms' }
+  primary: Rails
