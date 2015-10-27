@@ -171,4 +171,12 @@ RSpec.describe 'Frameworks rules' do
       expect(repository.secondary_frameworks).to eq ['Refinery CMS']
     end
   end
+
+  describe 'Rack' do
+    it 'returns Rack' do
+      repository = create_repository_with_file_content('Gemfile', "gem 'rack'")
+      expect(repository.primary_frameworks).to eq ['Rack']
+      expect(repository.secondary_frameworks).to eq []
+    end
+  end
 end

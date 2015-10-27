@@ -81,3 +81,7 @@ Refinery CMS:
   rules:
     - !ruby/object:GemRule { gem_name: 'refinerycms' }
   primary: Rails
+
+Rack:
+  rules:
+    - !ruby/object:GemRule { gem_name: 'rack' }
