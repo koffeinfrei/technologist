@@ -198,4 +198,26 @@ RSpec.describe 'Frameworks rules' do
       expect(repository.secondary_frameworks).to eq []
     end
   end
+
+  describe 'Magento' do
+    it 'returns Magento' do
+      repository = create_repository_with_file_content('composer.json', %[
+        {
+          "repositories": {
+            "installer-magento-core": {
+              "type": "git",
+              "url": "https://github.com/AydinHassan/magento-core-composer-installer"
+            },
+            "magento": {
+                "type": "git",
+                "url": "https://github.com/firegento/magento"
+            },
+            // ...
+          }
+        }
+      ])
+      expect(repository.primary_frameworks).to eq ['Magento']
+      expect(repository.secondary_frameworks).to eq []
+    end
+  end
 end

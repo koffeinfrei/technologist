@@ -89,3 +89,9 @@ Rack:
     - !ruby/object:FileContentRule
       file_name: config.ru
       file_content_pattern: 'run Proc\.new { \|env\|'
+
+Magento:
+  rules:
+    - !ruby/object:FileContentRule
+      file_name: 'composer.json'
+      file_content_pattern: '^\s*"magento":\s*{\s*$'
