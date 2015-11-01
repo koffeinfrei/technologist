@@ -53,7 +53,7 @@ Node:
   rules:
     - !ruby/object:FileContentRule
       file_name: 'package.json'
-      file_content_pattern: '"engines":\s*{\s*"node":'
+      file_content_pattern: '^\s*"node":'
 
 Hoodie:
   rules:

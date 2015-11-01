@@ -116,6 +116,7 @@ RSpec.describe 'Frameworks rules' do
     it 'returns Node' do
       repository = create_repository_with_file_content('package.json', %[
         "engines": {
+          "other_engine": "1.0",
           "node": ">=0.10.22"
          }
       ])
