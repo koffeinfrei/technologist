@@ -221,4 +221,18 @@ RSpec.describe 'Frameworks rules' do
       expect(repository.secondary_frameworks).to eq []
     end
   end
+
+  describe 'Vaadin' do
+    it 'returns Vaadin' do
+      repository = create_repository_with_file_content('pom.xml', %[
+        <dependency>
+            <groupId>com.example.www</groupId>
+            <artifactId>vaadin-application-components</artifactId>
+            <version>${vaadin.base.version}</version>
+        </dependency>
+      ])
+      expect(repository.primary_frameworks).to eq ['Vaadin']
+      expect(repository.secondary_frameworks).to eq []
+    end
+  end
 end

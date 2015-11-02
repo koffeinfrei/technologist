@@ -95,3 +95,9 @@ Magento:
     - !ruby/object:FileContentRule
       file_name: 'composer.json'
       file_content_pattern: '^\s*"magento":\s*{\s*$'
+
+Vaadin:
+  rules:
+    - !ruby/object:FileContentRule
+      file_name: 'pom.xml'
+      file_content_pattern: '<version>\${vaadin.base.version}</version>'
