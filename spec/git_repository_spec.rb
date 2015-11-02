@@ -16,20 +16,48 @@ describe Technologist::GitRepository do
   end
 
   describe '#find_blob' do
-    it 'does not recurse if the blob is in the root directory' do
-      repository = Technologist::GitRepository.new('.')
+    context 'non-recursive lookup' do
+      it 'does not recurse if the blob is in the root directory' do
+        repository = Technologist::GitRepository.new('.')
 
-      expect(repository).to receive(:find_blob).once.and_call_original
+        expect(repository).to receive(:find_blob).once.and_call_original
 
-      expect(repository.find_blob('Gemfile')).not_to be_nil
+        expect(repository.find_blob('Gemfile')).to be_an_instance_of Rugged::Blob
+      end
+
+      it 'yields to the block when a file is found and a block is provided' do
+        repository = Technologist::GitRepository.new('.')
+
+        expect(repository).to receive(:find_blob).once.and_call_original
+
+        yielded_value = nil
+        repository.find_blob('Gemfile') do |blob|
+          yielded_value = blob
+        end
+        expect(yielded_value).to be_an_instance_of Rugged::Blob
+      end
     end
 
-    it 'recursively searches for the blob' do
-      repository = Technologist::GitRepository.new('.')
+    context 'recursive lookup' do
+      it 'recursively searches for the blob' do
+        repository = Technologist::GitRepository.new('.')
 
-      expect(repository).to receive(:find_blob).at_least(:twice).and_call_original
+        expect(repository).to receive(:find_blob).at_least(:twice).and_call_original
 
-      expect(repository.find_blob('frameworks.yml')).not_to be_nil
+        expect(repository.find_blob('frameworks.yml')).to be_an_instance_of Rugged::Blob
+      end
+
+      it 'yields to the block when a file is found and a block is provided' do
+        repository = Technologist::GitRepository.new('.')
+
+        expect(repository).to receive(:find_blob).at_least(:twice).and_call_original
+
+        yielded_value = nil
+        repository.find_blob('frameworks.yml') do |blob|
+          yielded_value = blob
+        end
+        expect(yielded_value).to be_an_instance_of Rugged::Blob
+      end
     end
   end
 

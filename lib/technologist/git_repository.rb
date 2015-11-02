@@ -31,17 +31,25 @@ module Technologist
     # @param current_tree [Rugged::Tree] the git directory tree in which to look for the blob.
     #   Defaults to the root tree (see `#root_tree`).
     #
+    # @yield [Rugged::Blob] Yields the found blob to an optional block.
+    #   If the block returns `true` it means that the file is found and
+    #   recursion is stopped. If the return value is `false`, the resursion continues.
+    #
     # @return [Rugged::Blob] The blob blob or nil if it cannot be found.
-    def find_blob(blob_name, current_tree = root_tree)
+    def find_blob(blob_name, current_tree = root_tree, &block)
       blob = current_tree[blob_name]
 
       if blob
-        repository.lookup(blob[:oid])
-      else
-        current_tree.each_tree do |sub_tree|
-          blob = find_blob(blob_name, repository.lookup(sub_tree[:oid]))
-          break blob if blob
+        blob = repository.lookup(blob[:oid])
+        if !block_given? || yield(blob)
+          return blob
         end
+      end
+
+      # recurse
+      current_tree.each_tree do |sub_tree|
+        blob = find_blob(blob_name, repository.lookup(sub_tree[:oid]), &block)
+        break blob if blob
       end
     end
 
