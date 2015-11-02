@@ -16,7 +16,7 @@ module Technologist
             definition['rules'].map! do |rule|
               class_name, attributes = send("parse_rule_of_type_#{rule.class.name.downcase}", rule)
 
-              Rule.const_get("#{class_name}Rule").new(attributes)
+              Rule.const_get("#{class_name}Rule").new(technology, attributes)
             end
 
             [technology, definition]

@@ -25,7 +25,8 @@ RSpec.describe Technologist::YamlParser do
       expect(rules['primary']).to eq 'Rack'
 
       expect(rules['rules'][0]).to be_an_instance_of GemRule
-      expect(rules['rules'][0].gem_name).to be_nil
+
+      expect(rules['rules'][0].gem_name).to eq 'rails'
 
       expect(rules['rules'][1]).to be_an_instance_of GemRule
       expect(rules['rules'][1].gem_name).to eq 'jrails'

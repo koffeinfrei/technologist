@@ -33,7 +33,7 @@ module Technologist
         begin
           yaml_parser.rules.map do |technology, definition|
             definition['rules'].map do |rule|
-              if rule.matches?(technology, repository)
+              if rule.matches?(repository)
                 technology
               end
             end
