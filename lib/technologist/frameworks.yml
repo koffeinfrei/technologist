@@ -124,3 +124,9 @@ Spring:
     - FileContent:
       file_name: 'pom.xml'
       file_content_pattern: '<groupId>org.springframework</groupId>'
+
+Felix:
+  rules:
+    - FileContent:
+      file_name: 'pom.xml'
+      file_content_pattern: '<groupId>org.apache.felix</groupId>'

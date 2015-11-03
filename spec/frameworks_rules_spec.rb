@@ -248,5 +248,20 @@ RSpec.describe 'Frameworks rules' do
       expect(repository.primary_frameworks).to eq ['Spring']
       expect(repository.secondary_frameworks).to eq []
     end
+
+    describe 'Felix' do
+      it 'returns Felix' do
+        repository = create_repository_with_file_content('pom.xml', %[
+          <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <version>1.2.0</version>
+            <scope>provided</scope>
+          </dependency>
+        ])
+        expect(repository.primary_frameworks).to eq ['Felix']
+        expect(repository.secondary_frameworks).to eq []
+      end
+    end
   end
 end
