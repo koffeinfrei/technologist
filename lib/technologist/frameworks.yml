@@ -1,103 +1,120 @@
 Rails:
   rules:
-    - !ruby/object:GemRule {}
-    - !ruby/object:GemRule { gem_name: 'jrails' }
-    - !ruby/object:FileContentRule { file_name: 'boot.rb', file_content_pattern: 'Rails.boot!' }
+    - Gem
+    - Gem:
+      gem_name: 'jrails'
+    - FileContent:
+      file_name: 'boot.rb'
+      file_content_pattern: 'Rails.boot!'
 
 Locomotive:
   rules:
-    - !ruby/object:GemRule { gem_name: 'locomotivecms_wagon' }
+    - Gem:
+      gem_name: 'locomotivecms_wagon'
   primary: Rails
 
 Magnolia:
   rules:
-    - !ruby/object:FileContentRule { file_name: 'pom.xml', file_content_pattern: '<magnoliaVersion>' }
+    - FileContent:
+      file_name: 'pom.xml'
+      file_content_pattern: '<magnoliaVersion>'
 
 Sinatra:
   rules:
-    - !ruby/object:FileContentRule { file_name: 'config.ru', file_content_pattern: 'run Sinatra::Application' }
-    - !ruby/object:GemRule {}
+    - FileContent:
+      file_name: 'config.ru'
+      file_content_pattern: 'run Sinatra::Application'
+    - Gem
 
 Dashing:
   rules:
-    - !ruby/object:GemRule {}
+    - Gem
   primary: Sinatra
 
 Middleman:
   rules:
-    - !ruby/object:GemRule {}
+    - Gem
 
 Meteor:
   rules:
-    - !ruby/object:DirectoryPresenceRule { directory_name: '.meteor' }
+    - DirectoryPresence:
+      directory_name: '.meteor'
 
 Spree:
   rules:
-    - !ruby/object:GemRule {}
-    - !ruby/object:FileContentRule { file_name: 'boot.rb', file_content_pattern: 'Spree.boot!' }
+    - Gem
+    - FileContent:
+      file_name: 'boot.rb'
+      file_content_pattern: 'Spree.boot!'
   primary: Rails
 
 Wordpress:
   rules:
-    - !ruby/object:FilePresenceRule { file_name: 'wp-settings.php' }
+    - FilePresence:
+      file_name: 'wp-settings.php'
 
 Volt:
   rules:
-    - !ruby/object:GemRule {}
+    - Gem
 
 Ionic:
   rules:
-    - !ruby/object:FilePresenceRule { file_name: 'ionic.project' }
+    - FilePresence:
+      file_name: 'ionic.project'
 
 Node:
   rules:
-    - !ruby/object:FileContentRule
+    - FileContent:
       file_name: 'package.json'
       file_content_pattern: '^\s*"node":'
 
 Hoodie:
   rules:
-    - !ruby/object:FileContentRule
+    - FileContent:
       file_name: 'package.json'
       file_content_pattern: '"hoodie":\s*{'
   primary: Node
 
 PrestaShop:
   rules:
-    - !ruby/object:FileContentRule { file_name: 'init.php', file_content_pattern: 'PrestaShop' }
+    - FileContent:
+      file_name: 'init.php'
+      file_content_pattern: 'PrestaShop'
 
 Cordova:
   rules:
-    - !ruby/object:FileContentRule
+    - FileContent:
       file_name: 'config.xml'
       file_content_pattern: '\bxmlns:cdv="http://cordova.apache.org/ns/.+"'
 
 iOS:
   rules:
-    - !ruby/object:FileContentRule
+    - FileContent:
       file_name: 'project.pbxproj'
       file_content_pattern: '\n\s*SDKROOT = iphoneos;\n'
 
 Refinery CMS:
   rules:
-    - !ruby/object:GemRule { gem_name: 'refinerycms' }
+    - Gem:
+      gem_name: 'refinerycms'
   primary: Rails
 
 Rack:
   rules:
-    - !ruby/object:GemRule { gem_name: 'rack' }
-    - !ruby/object:FileContentRule
+    - Gem:
+      gem_name: 'rack'
+    - FileContent:
       file_name: 'config.ru'
       file_content_pattern: 'run Proc\.new { \|env\|'
 
 Magento:
   rules:
-    - !ruby/object:FileContentRule
+    - FileContent:
       file_name: 'composer.json'
       file_content_pattern: '^\s*"magento":\s*{\s*$'
 
 Vaadin:
   rules:
-    - !ruby/object:FileContentRule
+    - FileContent:
       file_name: 'pom.xml'
       file_content_pattern: '<version>\${vaadin.base.version}</version>'

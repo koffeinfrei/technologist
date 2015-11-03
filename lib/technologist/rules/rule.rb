@@ -1,9 +1,13 @@
 class Rule
-  def initialize(attributes = {})
+  attr_accessor :framework
+
+  def initialize(framework, attributes = {})
+    self.framework = framework
+
     attributes.each { |name, value| self.send(:"#{name}=", value) }
   end
 
-  def matches?(framework_name, repository)
+  def matches?(repository)
     false
   end
 end
