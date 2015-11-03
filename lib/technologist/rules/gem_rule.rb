@@ -8,11 +8,6 @@ class GemRule < FileContentRule
 
     self.file_name = 'Gemfile'
     self.gem_name ||= framework.downcase
-  end
-
-  def matches?(repository)
     self.file_content_pattern = /^\s*gem ["']#{gem_name}["']/
-
-    super
   end
 end
