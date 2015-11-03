@@ -263,5 +263,20 @@ RSpec.describe 'Frameworks rules' do
         expect(repository.secondary_frameworks).to eq []
       end
     end
+
+    describe 'GWT' do
+      it 'returns GWT' do
+        repository = create_repository_with_file_content('pom.xml', %[
+          <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-servlet</artifactId>
+            <version>${gwtVersion}</version>
+            <scope>runtime</scope>
+          </dependency>
+        ])
+        expect(repository.primary_frameworks).to eq ['GWT']
+        expect(repository.secondary_frameworks).to eq []
+      end
+    end
   end
 end

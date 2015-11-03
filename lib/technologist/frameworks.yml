@@ -130,3 +130,9 @@ Felix:
     - FileContent:
       file_name: 'pom.xml'
       file_content_pattern: '<groupId>org.apache.felix</groupId>'
+
+GWT:
+  rules:
+    - FileContent:
+      file_name: 'pom.xml'
+      file_content_pattern: '<groupId>com.google.gwt</groupId>'
