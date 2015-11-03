@@ -118,3 +118,9 @@ Vaadin:
     - FileContent:
       file_name: 'pom.xml'
       file_content_pattern: '<version>\${vaadin.base.version}</version>'
+
+Spring:
+  rules:
+    - FileContent:
+      file_name: 'pom.xml'
+      file_content_pattern: '<groupId>org.springframework</groupId>'

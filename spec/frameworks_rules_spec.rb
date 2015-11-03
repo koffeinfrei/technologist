@@ -235,4 +235,18 @@ RSpec.describe 'Frameworks rules' do
       expect(repository.secondary_frameworks).to eq []
     end
   end
+
+  describe 'Spring' do
+    it 'returns Spring' do
+      repository = create_repository_with_file_content('pom.xml', %[
+        <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-web</artifactId>
+          <version>${spring-version}</version>
+        </dependency>
+      ])
+      expect(repository.primary_frameworks).to eq ['Spring']
+      expect(repository.secondary_frameworks).to eq []
+    end
+  end
 end
