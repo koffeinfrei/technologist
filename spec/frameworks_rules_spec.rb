@@ -250,10 +250,11 @@ RSpec.describe 'Frameworks rules' do
       expect(repository.primary_frameworks).to eq ['Spring']
       expect(repository.secondary_frameworks).to eq []
     end
+  end
 
-    describe 'Felix' do
-      it 'returns Felix' do
-        repository = create_repository_with_file_content('pom.xml', %[
+  describe 'Felix' do
+    it 'returns Felix' do
+      repository = create_repository_with_file_content('pom.xml', %[
           <dependencies>
             <dependency>
               <groupId>org.apache.felix</groupId>
@@ -262,15 +263,15 @@ RSpec.describe 'Frameworks rules' do
               <scope>provided</scope>
             </dependency>
           </dependencies>
-        ])
-        expect(repository.primary_frameworks).to eq ['Felix']
-        expect(repository.secondary_frameworks).to eq []
-      end
+                                                       ])
+      expect(repository.primary_frameworks).to eq ['Felix']
+      expect(repository.secondary_frameworks).to eq []
     end
+  end
 
-    describe 'GWT' do
-      it 'returns GWT' do
-        repository = create_repository_with_file_content('pom.xml', %[
+  describe 'GWT' do
+    it 'returns GWT' do
+      repository = create_repository_with_file_content('pom.xml', %[
           <dependencies>
             <dependency>
               <groupId>com.google.gwt</groupId>
@@ -279,10 +280,9 @@ RSpec.describe 'Frameworks rules' do
               <scope>runtime</scope>
             </dependency>
           </dependencies>
-        ])
-        expect(repository.primary_frameworks).to eq ['GWT']
-        expect(repository.secondary_frameworks).to eq []
-      end
+                                                       ])
+      expect(repository.primary_frameworks).to eq ['GWT']
+      expect(repository.secondary_frameworks).to eq []
     end
   end
 end
