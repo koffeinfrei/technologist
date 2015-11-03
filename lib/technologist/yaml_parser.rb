@@ -12,11 +12,8 @@ module Technologist
       @rules ||=
         begin
           parsed_rules = from_file.map do |technology, definition|
-            # Create a class instance for each rule entry
             definition['rules'].map! do |rule|
-              class_name, attributes = send("parse_rule_of_type_#{rule.class.name.downcase}", rule)
-
-              Rule.const_get("#{class_name}Rule").new(technology, attributes)
+              instancify(technology, rule)
             end
 
             [technology, definition]
@@ -30,6 +27,13 @@ module Technologist
 
     def from_file
       YAML.load_file(file_name)
+    end
+
+    # Create a class instance for a rule entry
+    def instancify(technology, rule)
+      class_name, attributes = send("parse_rule_of_type_#{rule.class.name.downcase}", rule)
+
+      Rule.const_get("#{class_name}Rule").new(technology, attributes)
     end
 
     # Parses a yaml rule where the rule entry is a string,
