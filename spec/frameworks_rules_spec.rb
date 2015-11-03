@@ -237,11 +237,25 @@ RSpec.describe 'Frameworks rules' do
   end
 
   describe 'Spring' do
-    it 'returns Spring' do
+    it 'returns Spring when framework is defined literally' do
       repository = create_repository_with_file_content('pom.xml', %[
         <dependencies>
           <dependency>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring-version}</version>
+          </dependency>
+        </dependencies>
+      ])
+      expect(repository.primary_frameworks).to eq ['Spring']
+      expect(repository.secondary_frameworks).to eq []
+    end
+
+    it 'returns Spring when framework is defined by a spring variable' do
+      repository = create_repository_with_file_content('pom.xml', %[
+        <dependencies>
+          <dependency>
+            <groupId>${spring.groupId}</groupId>
             <artifactId>spring-web</artifactId>
             <version>${spring-version}</version>
           </dependency>

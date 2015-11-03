@@ -123,6 +123,8 @@ Spring:
   rules:
     - MavenPlugin:
       plugin_name: 'org.springframework'
+    - MavenPlugin:
+      plugin_name: '${spring.groupId}'
 
 Felix:
   rules:
