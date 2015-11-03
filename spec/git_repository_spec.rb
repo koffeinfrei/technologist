@@ -1,20 +1,6 @@
 require 'spec_helper'
 
 describe Technologist::GitRepository do
-  describe '#file_content' do
-    it 'returns the content of a file in the root directory' do
-      repository = Technologist::GitRepository.new('.')
-
-      expect(repository.file_content('Gemfile')).not_to be_nil
-    end
-
-    it 'returns the content of a file in a subdirectory' do
-      repository = Technologist::GitRepository.new('.')
-
-      expect(repository.file_content('frameworks.yml')).not_to be_nil
-    end
-  end
-
   describe '#find_blob' do
     context 'non-recursive lookup' do
       it 'does not recurse if the blob is in the root directory' do
@@ -86,6 +72,53 @@ describe Technologist::GitRepository do
       repository = Technologist::GitRepository.new('.')
 
       expect(repository.file_exists?('bogus')).to eq false
+    end
+  end
+
+  describe '#file_with_content_exists?' do
+    it 'returns true when the file exists and the block evualtes to true' do
+      repository = Technologist::GitRepository.new('.')
+
+      exists = repository.file_with_content_exists?('Gemfile') do |content|
+        true
+      end
+
+      expect(exists).to eq true
+    end
+
+    it 'returns true when the file exists twice and the block evualtes to false the first time and true the second time' do
+      repository = Technologist::GitRepository.new('.')
+      file1 = double(:file1, content: 'content1')
+      file2 = double(:file2, content: 'content2')
+      allow(repository).to receive(:find_blob).with('virtual_file')
+        .and_yield(file1)
+        .and_yield(file2)
+
+      exists = repository.file_with_content_exists?('virtual_file') do |content|
+        content == 'content2'
+      end
+
+      expect(exists).to eq true
+    end
+
+    it 'returns false when the file exists but the block evaluates to false' do
+      repository = Technologist::GitRepository.new('.')
+
+      exists = repository.file_with_content_exists?('Gemfile') do |content|
+        false
+      end
+
+      expect(exists).to eq false
+    end
+
+    it 'returns false when the file does not exist' do
+      repository = Technologist::GitRepository.new('.')
+
+      exists = repository.file_with_content_exists?('bogus') do |content|
+        true
+      end
+
+      expect(exists).to eq false
     end
   end
 end

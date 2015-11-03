@@ -12,17 +12,6 @@ module Technologist
       repository.head.target.tree
     end
 
-    # Returns the file content.
-    #
-    # @param file_name [String] the file name
-    #
-    # @return [String] The content of the file or nil if the file cannot be found.
-    def file_content(file_name)
-      file = find_blob(file_name)
-
-      file.content if file
-    end
-
     # Recursively searches for the blob identified by `blob_name`
     # in all subdirectories in the repository. A blob is usually either
     # a file or a directory.
@@ -71,6 +60,21 @@ module Technologist
     # @return [Boolean] true if the file can be found.
     def file_exists?(file_name)
       !!find_blob(file_name)
+    end
+
+    # Looks for a file and yields the file content to
+    # the block (if the file can be found). The block's
+    # return value is used to determine if we're done
+    # searching. If the return value is `false`, we
+    # keep searching for the file.
+    #
+    # @param file_name [String] the file name
+    #
+    # @return [Boolean] true if the file can be found.
+    def file_with_content_exists?(file_name)
+      !!find_blob(file_name) do |file|
+        yield file.content
+      end
     end
   end
 end

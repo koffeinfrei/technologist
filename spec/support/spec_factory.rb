@@ -2,9 +2,14 @@ module SpecFactory
   def create_repository_with_file_content(file_name, file_content)
     Technologist::Repository.new('.').tap do |repository|
       # default file content for non existing files
-      allow(repository.git_repository).to receive(:file_content).and_return(nil)
+      allow(repository.git_repository).to receive(:find_blob)
 
-      allow(repository.git_repository).to receive(:file_content).with(file_name).and_return(file_content)
+      # stub for a git blob (i.e. the file in git)
+      blob = double(:blob)
+      allow(blob).to receive(:content).and_return(file_content)
+
+      # yield the blob
+      allow(repository.git_repository).to receive(:find_blob).with(file_name).and_yield(blob)
     end
   end
 

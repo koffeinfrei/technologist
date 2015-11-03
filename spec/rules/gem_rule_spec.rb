@@ -6,8 +6,8 @@ describe GemRule do
       rule = GemRule.new(gem_name: 'next_generation_gem')
 
       repository = double(:repository)
-      allow(repository).to receive(:file_content).with('Gemfile')
-        .and_return("content\ngem 'next_generation_gem'\ncontent")
+      allow(repository).to receive(:file_with_content_exists?).with('Gemfile')
+        .and_yield("content\ngem 'next_generation_gem'\ncontent")
 
       expect(rule.matches?('Framework1', repository)).to eq true
     end
@@ -16,8 +16,8 @@ describe GemRule do
       rule = GemRule.new
 
       repository = double(:repository)
-      allow(repository).to receive(:file_content).with('Gemfile')
-        .and_return("content\ngem 'framework1'\ncontent")
+      allow(repository).to receive(:file_with_content_exists?).with('Gemfile')
+        .and_yield("content\ngem 'framework1'\ncontent")
 
       expect(rule.matches?('Framework1', repository)).to eq true
     end
@@ -26,8 +26,8 @@ describe GemRule do
       rule = GemRule.new(gem_name: 'next_generation_gem')
 
       repository = double(:repository)
-      allow(repository).to receive(:file_content).with('Gemfile')
-        .and_return("content\ngem \"next_generation_gem\"\ncontent")
+      allow(repository).to receive(:file_with_content_exists?).with('Gemfile')
+        .and_yield("content\ngem \"next_generation_gem\"\ncontent")
 
       expect(rule.matches?('Framework1', repository)).to eq true
     end
@@ -36,8 +36,8 @@ describe GemRule do
       rule = GemRule.new(gem_name: 'next_generation_gem')
 
       repository = double(:repository)
-      allow(repository).to receive(:file_content).with('Gemfile')
-        .and_return("content\ngem 'next_generation_gem'\ncontent")
+      allow(repository).to receive(:file_with_content_exists?).with('Gemfile')
+        .and_yield("content\ngem 'next_generation_gem'\ncontent")
 
       expect(rule.matches?('Framework1', repository)).to eq true
     end
@@ -46,8 +46,8 @@ describe GemRule do
       rule = GemRule.new(gem_name: 'next_generation_gem')
 
       repository = double(:repository)
-      allow(repository).to receive(:file_content).with('Gemfile')
-        .and_return("content\ngem 'next_generation_gem', '~> 4.3'\ncontent")
+      allow(repository).to receive(:file_with_content_exists?).with('Gemfile')
+        .and_yield("content\ngem 'next_generation_gem', '~> 4.3'\ncontent")
 
       expect(rule.matches?('Framework1', repository)).to eq true
     end
@@ -56,8 +56,8 @@ describe GemRule do
       rule = GemRule.new(gem_name: 'next_generation_gem')
 
       repository = double(:repository)
-      allow(repository).to receive(:file_content).with('Gemfile')
-        .and_return("content\n  gem 'next_generation_gem'\ncontent")
+      allow(repository).to receive(:file_with_content_exists?).with('Gemfile')
+        .and_yield("content\n  gem 'next_generation_gem'\ncontent")
 
       expect(rule.matches?('Framework1', repository)).to eq true
     end
@@ -66,8 +66,8 @@ describe GemRule do
       rule = GemRule.new(gem_name: 'next_generation_gem')
 
       repository = double(:repository)
-      allow(repository).to receive(:file_content).with('Gemfile')
-        .and_return("content\n# gem 'next_generation_gem'\ncontent")
+      allow(repository).to receive(:file_with_content_exists?).with('Gemfile')
+        .and_yield("content\n# gem 'next_generation_gem'\ncontent")
 
       expect(rule.matches?('Framework1', repository)).to eq false
     end
@@ -76,8 +76,8 @@ describe GemRule do
       rule = GemRule.new(gem_name: 'next_generation_gem')
 
       repository = double(:repository)
-      allow(repository).to receive(:file_content).with('Gemfile')
-        .and_return("content\ngem 'last_generation_gem'\ncontent")
+      allow(repository).to receive(:file_with_content_exists?).with('Gemfile')
+        .and_yield("content\ngem 'last_generation_gem'\ncontent")
 
       expect(rule.matches?('Framework1', repository)).to eq false
     end
