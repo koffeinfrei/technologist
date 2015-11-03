@@ -239,11 +239,13 @@ RSpec.describe 'Frameworks rules' do
   describe 'Spring' do
     it 'returns Spring' do
       repository = create_repository_with_file_content('pom.xml', %[
-        <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-web</artifactId>
-          <version>${spring-version}</version>
-        </dependency>
+        <dependencies>
+          <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring-version}</version>
+          </dependency>
+        </dependencies>
       ])
       expect(repository.primary_frameworks).to eq ['Spring']
       expect(repository.secondary_frameworks).to eq []
@@ -252,12 +254,14 @@ RSpec.describe 'Frameworks rules' do
     describe 'Felix' do
       it 'returns Felix' do
         repository = create_repository_with_file_content('pom.xml', %[
-          <dependency>
-            <groupId>org.apache.felix</groupId>
-            <artifactId>org.osgi.core</artifactId>
-            <version>1.2.0</version>
-            <scope>provided</scope>
-          </dependency>
+          <dependencies>
+            <dependency>
+              <groupId>org.apache.felix</groupId>
+              <artifactId>org.osgi.core</artifactId>
+              <version>1.2.0</version>
+              <scope>provided</scope>
+            </dependency>
+          </dependencies>
         ])
         expect(repository.primary_frameworks).to eq ['Felix']
         expect(repository.secondary_frameworks).to eq []
@@ -267,12 +271,14 @@ RSpec.describe 'Frameworks rules' do
     describe 'GWT' do
       it 'returns GWT' do
         repository = create_repository_with_file_content('pom.xml', %[
-          <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-servlet</artifactId>
-            <version>${gwtVersion}</version>
-            <scope>runtime</scope>
-          </dependency>
+          <dependencies>
+            <dependency>
+              <groupId>com.google.gwt</groupId>
+              <artifactId>gwt-servlet</artifactId>
+              <version>${gwtVersion}</version>
+              <scope>runtime</scope>
+            </dependency>
+          </dependencies>
         ])
         expect(repository.primary_frameworks).to eq ['GWT']
         expect(repository.secondary_frameworks).to eq []

@@ -121,18 +121,15 @@ Vaadin:
 
 Spring:
   rules:
-    - FileContent:
-      file_name: 'pom.xml'
-      file_content_pattern: '<groupId>org.springframework</groupId>'
+    - MavenPlugin:
+      plugin_name: 'org.springframework'
 
 Felix:
   rules:
-    - FileContent:
-      file_name: 'pom.xml'
-      file_content_pattern: '<groupId>org.apache.felix</groupId>'
+    - MavenPlugin:
+      plugin_name: 'org.apache.felix'
 
 GWT:
   rules:
-    - FileContent:
-      file_name: 'pom.xml'
-      file_content_pattern: '<groupId>com.google.gwt</groupId>'
+    - MavenPlugin:
+      plugin_name: 'com.google.gwt'
