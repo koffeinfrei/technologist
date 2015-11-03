@@ -277,7 +277,7 @@ RSpec.describe 'Frameworks rules' do
               <scope>provided</scope>
             </dependency>
           </dependencies>
-                                                       ])
+      ])
       expect(repository.primary_frameworks).to eq ['Felix']
       expect(repository.secondary_frameworks).to eq []
     end
@@ -294,8 +294,24 @@ RSpec.describe 'Frameworks rules' do
               <scope>runtime</scope>
             </dependency>
           </dependencies>
-                                                       ])
+      ])
       expect(repository.primary_frameworks).to eq ['GWT']
+      expect(repository.secondary_frameworks).to eq []
+    end
+  end
+
+  describe 'Jersey' do
+    it 'returns Jersey' do
+      repository = create_repository_with_file_content('pom.xml', %[
+        <dependencies>
+          <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-servlet</artifactId>
+            <version>${jersey-version}</version>
+          </dependency>
+        </dependencies>
+      ])
+      expect(repository.primary_frameworks).to eq ['Jersey']
       expect(repository.secondary_frameworks).to eq []
     end
   end
