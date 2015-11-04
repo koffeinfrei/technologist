@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require "technologist"
+require "slop"
 
 def framework_report(title, frameworks)
   return if frameworks.empty?
@@ -10,13 +11,35 @@ def framework_report(title, frameworks)
   end
 end
 
-path = ARGV[0] || Dir.pwd
+def main(path)
+  result = Technologist::Repository.new(path)
 
-result = Technologist::Repository.new(path)
+  if result.primary_frameworks.empty? && result.secondary_frameworks.empty?
+    puts "No known frameworks could be detected."
+  else
+    framework_report('Primary Frameworks', result.primary_frameworks)
+    framework_report('Secondary Frameworks', result.secondary_frameworks)
+  end
+end
 
-if result.primary_frameworks.empty? && result.secondary_frameworks.empty?
-  puts "No known frameworks could be detected."
-else
-  framework_report('Primary Frameworks', result.primary_frameworks)
-  framework_report('Secondary Frameworks', result.secondary_frameworks)
+Slop.parse do
+  banner "Usage: #{File.basename($0)} [options] [repository_path]"
+
+  run do |opts, args|
+    if args.empty?
+      args << Dir.pwd
+    end
+
+    main(args.join(' '))
+  end
+
+  on '-v', '--version', 'print the version' do
+    puts Technologist::VERSION
+    exit
+  end
+
+  on '-h', '--help' do
+    puts help
+    exit
+  end
 end
