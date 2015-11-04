@@ -16,6 +16,14 @@ def main(path)
 
   if result.primary_frameworks.empty? && result.secondary_frameworks.empty?
     puts "No known frameworks could be detected."
+    puts <<-END.gsub(/^ {4}/, '')
+
+      If you think that a framework should be detected for this repository
+      you could add a new rule by creating a pull request on Github
+      (see https://github.com/koffeinfrei/technologist#contributing)
+      or report an issue https://github.com/koffeinfrei/technologist/issues/new.
+      Thanks!
+    END
   else
     framework_report('Primary Frameworks', result.primary_frameworks)
     framework_report('Secondary Frameworks', result.secondary_frameworks)
