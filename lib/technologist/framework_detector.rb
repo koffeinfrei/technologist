@@ -12,17 +12,17 @@ module Technologist
     end
 
     def primary_frameworks
-      matched_frameworks.map do |technology|
+      matched_frameworks.map do |technology, definition|
         # it's either the primary value defined in the yaml
         # or the technology itself
-        yaml_parser.rules[technology]['primary'] || technology
+        definition['primary'] || technology
       end.uniq
     end
 
     def secondary_frameworks
-      matched_frameworks.map do |technology|
+      matched_frameworks.map do |technology, definition|
         # it's a secondary if a primary is defined in the yaml
-        yaml_parser.rules[technology]['primary'] && technology
+        definition['primary'] && technology
       end.compact
     end
 
@@ -31,13 +31,12 @@ module Technologist
     def matched_frameworks
       @frameworks ||=
         begin
-          yaml_parser.rules.map do |technology, definition|
-            definition['rules'].map do |rule|
-              if rule.matches?(repository)
-                technology
-              end
+          matched_rules = yaml_parser.rules.select do |technology, definition|
+            definition['rules'].any? do |rule|
+              rule.matches?(repository)
             end
-          end.flatten.compact
+          end
+          Hash[matched_rules]
         end
     end
   end
