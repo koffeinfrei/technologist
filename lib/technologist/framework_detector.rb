@@ -11,6 +11,12 @@ module Technologist
       @yaml_parser = YamlParser.new(FRAMEWORK_RULES)
     end
 
+    def frameworks
+      matched_frameworks.flat_map do |technology, definition|
+        [definition['primary'], technology]
+      end.compact.uniq
+    end
+
     def primary_frameworks
       matched_frameworks.map do |technology, definition|
         # it's either the primary value defined in the yaml

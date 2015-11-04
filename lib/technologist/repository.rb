@@ -10,6 +10,10 @@ module Technologist
       @framework_detector = FrameworkDetector.new(@git_repository)
     end
 
+    def frameworks
+      framework_detector.frameworks
+    end
+
     def primary_frameworks
       framework_detector.primary_frameworks
     end

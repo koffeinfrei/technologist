@@ -26,8 +26,9 @@ Or install it yourself as:
 require 'technologist'
 
 technologist = Technologist::Repository.new('.')
-technologist.primary_frameworks      # => ['Dashing']
-technologist.secondary_frameworks    # => ['Sinatra']
+technologist.primary_frameworks      # => ['Sinatra']
+technologist.secondary_frameworks    # => ['Dashing']
+technologist.frameworks              # => ['Sinatra', 'Dashing']
 ```
 
 ## Development
