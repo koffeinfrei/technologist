@@ -42,7 +42,7 @@ To add a framework definition add a new section to the
 [frameworks.yml](lib/technologist/frameworks.yml) file and
 add a new spec covering the new framework in [spec/frameworks_rules_spec.rb](spec/frameworks_rules_spec.rb)
 
-1. Fork it ( https://github.com/[my-github-username]/technologist/fork )
+1. Fork it ( https://github.com/koffeinfrei/technologist/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
