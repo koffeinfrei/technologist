@@ -51,4 +51,15 @@ add a new spec covering the new framework in [spec/frameworks_rules_spec.rb](spe
 
 ## License
 
-Licensed under the [GNU Affero General Public License v3.0](LICENSE)
+This program is free software: you can redistribute it and/or modify it under
+the terms of the [Lesser GNU General Public License](LICENSE) as published by
+the Free Software Foundation, either version 3 of the License, or (at your
+option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.  See the Lesser GNU General Public License for more
+details.
+
+**You can use this gem in proprietary and commercial projects. The LGPL only
+demands that you contribute back changes to the library itself.**

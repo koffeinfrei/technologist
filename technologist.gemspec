@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{Detects the technologies used in a repository.}
   spec.description   = %q{Detects technologies in a repository by applying a set of rules and returning primary and secondary frameworks.}
   spec.homepage      = "https://github.com/koffeinfrei/technologist"
-  spec.license       = "AGPL-3.0"
+  spec.license       = "LGPL-3.0"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
