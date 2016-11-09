@@ -39,13 +39,13 @@ Meteor:
   rules:
     - DirectoryPresence:
       directory_name: '.meteor'
-      
+
 Mantra:
   rules:
     - FileContent:
       file_name: 'package.json'
       file_content_pattern: '"mantra-core":'
-   primary: Meteor
+  primary: Meteor
 
 Spree:
   rules:
