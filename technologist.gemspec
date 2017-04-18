@@ -19,9 +19,9 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "rugged", "~> 0.23.3"
+  spec.add_runtime_dependency "rugged", ">= 0.25.1"
   spec.add_runtime_dependency "nokogiri", "~> 1.6"
-  spec.add_runtime_dependency "slop", "~> 3.4" # we can't use version 4 due to pry's dependecy
+  spec.add_runtime_dependency "slop", "~> 3.4" # we can't use version 4 due to pry's dependency
 
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
