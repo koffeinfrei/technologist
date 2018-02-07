@@ -1,3 +1,4 @@
+[![Gem Version](https://badge.fury.io/rb/technologist.svg)](https://badge.fury.io/rb/technologist)
 [![Build Status](https://travis-ci.org/koffeinfrei/technologist.svg?branch=master)](https://travis-ci.org/koffeinfrei/technologist)
 
 # Technologist
