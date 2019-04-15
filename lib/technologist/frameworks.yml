@@ -40,6 +40,13 @@ Meteor:
     - DirectoryPresence:
       directory_name: '.meteor'
 
+Mantra:
+  rules:
+    - FileContent:
+      file_name: 'package.json'
+      file_content_pattern: '"mantra-core":'
+  primary: Meteor
+
 Spree:
   rules:
     - Gem
